@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Page de Contact — Inas Abbaci</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 40px; 
+      background-color: #f0f2f5; 
+    }
+    h1 { 
+      color: #333; 
+      text-align: center; 
+    }
+    form { 
+      background-color: #fff; 
+      padding: 25px; 
+      border-radius: 10px; 
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15); 
+      max-width: 500px; 
+      margin: auto;
+    }
+    input, textarea { 
+      width: 100%; 
+      padding: 12px; 
+      margin: 10px 0; 
+      border: 1px solid #ccc; 
+      border-radius: 6px; 
+      font-size: 14px;
+    }
+    button { 
+      padding: 12px 20px; 
+      background-color: #1f77b4; 
+      color: white; 
+      border: none; 
+      border-radius: 6px; 
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover { background-color: #155d8b; }
+    .info { 
+      text-align: center; 
+      margin-bottom: 20px; 
+      font-size: 15px; 
+      color: #555; 
+    }
+  </style>
+</head>
+<body>
+  <h1>Contactez-moi — Inas Abbaci</h1>
+  <div class="info">
+    📞 0667469740 <br>
+    Je suis à votre disposition pour gérer vos projets.
+  </div>
+  <form>
+    <label for="nom">Nom :</label>
+    <input type="text" id="nom" name="nom" value="Abbaci">
+
+    <label for="prenom">Prénom :</label>
+    <input type="text" id="prenom" name="prenom" value="Inas">
+
+    <label for="message">Message :</label>
+    <textarea id="message" name="message" rows="5" placeholder="Votre message ici..."></textarea>
+
+    <button type="submit">Envoyer</button>
+  </form>
+</body>
+</html>
