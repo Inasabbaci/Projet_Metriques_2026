@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Atelier - Humidité Versailles</title>
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    text-align: center;
+    padding: 40px;
+}
+
+#chart {
+    width: 600px;
+    height: 500px;
+    margin: auto;
+}
+
+h1 {
+    color: #333;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Humidité moyenne - Versailles</h1>
+<div id="chart"></div>
+
+<script>
+google.charts.load('current', { packages: ['corechart'] });
+google.charts.setOnLoadCallback(drawChart);
+
+async function drawChart() {
+    const res = await fetch('/atelier');
+    const json = await res.json();
+
+    const data = google.visualization.arrayToDataTable([
+        ['Type', 'Valeur'],
+        ['Humidité (%)', json.humidite_moyenne],
+        ['Air restant (%)', json.reste]
+    ]);
+
+    const options = {
+        title: 'Taux d’humidité moyen (7 prochains jours)',
+        pieHole: 0.4
+    };
+
+    const chart = new google.visualization.PieChart(document.getElementById('chart'));
+    chart.draw(data, options);
+}
+</script>
+
+</body>
+</html>

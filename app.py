@@ -34,6 +34,33 @@ def histogramme():
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
+@app.get("/atelier")
+def api_atelier():
+    
+    url = "https://api.open-meteo.com/v1/forecast?latitude=48.8014&longitude=2.1301&hourly=relative_humidity_2m"
+    response = requests.get(url)
+    data = response.json()
+
+    humidities = data.get("hourly", {}).get("relative_humidity_2m", [])
+
+    # On prend seulement les 7 premiers jours (24h x 7 = 168 valeurs)
+    first_week = humidities[:168]
+
+    # Calcul moyenne humidité
+    if len(first_week) > 0:
+        average_humidity = sum(first_week) / len(first_week)
+    else:
+        average_humidity = 0
+
+    result = {
+        "humidite_moyenne": round(average_humidity, 2),
+        "reste": round(100 - average_humidity, 2)
+    }
+
+    return jsonify(result)
+@app.route("/atelier")
+def page_atelier():
+    return render_template("atelier.html")
 
 
 # Ne rien mettre après ce commentaire
