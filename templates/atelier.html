@@ -36,7 +36,7 @@ google.charts.load('current', { packages: ['corechart'] });
 google.charts.setOnLoadCallback(drawChart);
 
 async function drawChart() {
-    const res = await fetch('/atelier');
+    const res = await fetch('/atelier-data');
     const json = await res.json();
 
     const data = google.visualization.arrayToDataTable([
