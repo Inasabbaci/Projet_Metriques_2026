@@ -13,6 +13,12 @@
       color: #333; 
       text-align: center; 
     }
+    .info { 
+      text-align: center; 
+      margin-bottom: 20px; 
+      font-size: 16px; 
+      color: #555; 
+    }
     form { 
       background-color: #fff; 
       padding: 25px; 
@@ -39,26 +45,24 @@
       font-size: 16px;
     }
     button:hover { background-color: #155d8b; }
-    .info { 
-      text-align: center; 
-      margin-bottom: 20px; 
-      font-size: 15px; 
-      color: #555; 
-    }
   </style>
 </head>
 <body>
   <h1>Contactez-moi — Inas Abbaci</h1>
+
   <div class="info">
-    📞 0667469740 <br>
-    Je suis à votre disposition pour gérer vos projets.
+    <p>Nom : Abbaci</p>
+    <p>Prénom : Inas</p>
+    <p>Téléphone : 0667469740</p>
+    <p>Message : Je suis à votre disposition pour gérer vos projets.</p>
   </div>
+
   <form>
     <label for="nom">Nom :</label>
-    <input type="text" id="nom" name="nom" value="Abbaci">
+    <input type="text" id="nom" name="nom">
 
     <label for="prenom">Prénom :</label>
-    <input type="text" id="prenom" name="prenom" value="Inas">
+    <input type="text" id="prenom" name="prenom">
 
     <label for="message">Message :</label>
     <textarea id="message" name="message" rows="5" placeholder="Votre message ici..."></textarea>
