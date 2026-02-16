@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Températures Paris — Histogramme</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    async function drawChart() {
+      // On va chercher les données depuis l'API /paris
+      const res = await fetch('/paris');
+      const json = await res.json();
+
+      // Filtrer pour garder seulement les prochaines 7 journées (24h par jour)
+      const rows = [];
+      const jours = new Set();
+      for (const entry of json) {
+        const date = entry.datetime.split('T')[0]; // extrait la date
+        if (!jours.has(date)) {
+          rows.push([date, entry.temperature_c]);
+          jours.add(date);
+        }
+        if (jours.size >= 7) break;
+      }
+
+      const data = new google.visualization.DataTable();
+      data.addColumn('string', 'Date');
+      data.addColumn('number', 'Température (°C)');
+      data.addRows(rows);
+
+      const options = {
+        title: 'Températures journalières à Paris (prochaines 7 jours)',
+        legend: { position: 'none' },
+        hAxis: { title: 'Date' },
+        vAxis: { title: 'Température (°C)' },
+        colors: ['#1f77b4']
+      };
+
+      const chart = new google.visualization.ColumnChart(document.getElementById('chart'));
+      chart.draw(data, options);
+    }
+  </script>
+</head>
+<body>
+  <h1>Histogramme des températures — Paris</h1>
+  <div id="chart" style="width: 100%; height: 500px;"></div>
+</body>
+</html>
